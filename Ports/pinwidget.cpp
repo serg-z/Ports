@@ -4,13 +4,16 @@
 
 #include <QDebug>
 
-PinWidget::PinWidget(QWidget *parent) :
-    QWidget(parent)
+PinWidget::PinWidget(QWidget *parent, int number, const QString &header,
+                     bool interactive, const QString &toolTip) :
+    QWidget(parent),
+    m_number(number),
+    m_header(header),
+    m_interactive(interactive),
+    m_state(false),
+    m_pinLineSize(3)
 {
-    setMinimumSize(36, 44);
-
-    m_pinName = "xxx";
-    m_pinNumber = 0;
+    setMinimumSize(36, 60);
 
     m_pinNameFont.setPixelSize(12);
     m_pinNameFont.setBold(true);
@@ -18,9 +21,7 @@ PinWidget::PinWidget(QWidget *parent) :
     m_pinNumberFont.setPixelSize(12);
     m_pinNumberFont.setBold(true);
 
-    m_pinLineSize = 3;
-
-    m_checkable = m_checked = false;
+    setToolTip(toolTip);
 }
 
 void PinWidget::paintEvent(QPaintEvent *e)
@@ -29,51 +30,55 @@ void PinWidget::paintEvent(QPaintEvent *e)
 
     QPainter painter(this);
 
-    // pin name
+    // header
     painter.setPen(Qt::black);
     painter.setFont(m_pinNameFont);
-    painter.drawText(rect(), Qt::AlignTop | Qt::AlignHCenter, m_pinName);
+    painter.drawText(rect(), Qt::AlignTop | Qt::AlignHCenter, m_header);
 
-    // pin rect
+    // rounded rect
     int nameSize = m_pinNameFont.pixelSize();
     int nameMargin = 3;
-    int size = qMin(height() - nameSize - nameMargin, width());
+    int size = qMin(height() - nameSize - nameMargin, width() - 2);
     int hmargin = (width() - size + m_pinLineSize) * 0.5;
     int vmargin = (height() - nameSize - size + nameMargin + m_pinLineSize) * 0.5;
     size -= m_pinLineSize;
     QRect pr(hmargin, nameSize + vmargin, size, size);
 
-    if (m_checked) {
-        painter.setBrush(m_checkable ? Qt::red : Qt::green);
+    if (m_state) {
+        painter.setBrush(m_interactive ? Qt::red : Qt::green);
     } else {
-        painter.setBrush(m_checkable ? Qt::lightGray : Qt::white);
+        painter.setBrush(m_interactive ? Qt::lightGray : Qt::white);
     }
 
     painter.setPen(QPen(Qt::black, m_pinLineSize));
     painter.drawRoundedRect(pr, 7, 7);
 
-    // pin number
+    // inner text
     painter.setFont(m_pinNumberFont);
     painter.setPen(Qt::black);
-    painter.drawText(pr, Qt::AlignCenter, QString("%1").arg(m_pinNumber));
+    painter.drawText(pr, Qt::AlignCenter, QString("%1").arg(m_number));
 }
 
 void PinWidget::mouseReleaseEvent(QMouseEvent *e)
 {
     QWidget::mouseReleaseEvent(e);
 
-    if (m_checkable) {
-        m_checked = !m_checked;
-
-        emit toggled(m_checked, m_pinNumber);
+    if (m_interactive) {
+        m_state = !m_state;
 
         repaint();
+
+        emit toggled(m_state);
     }
 }
 
-void PinWidget::setState(bool checked)
+void PinWidget::setState(bool state)
 {
-    m_checked = checked;
+    if (m_state != state) {
+        m_state = state;
 
-    repaint();
+        repaint();
+
+        emit stateChanged(state);
+    }
 }

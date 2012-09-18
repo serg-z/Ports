@@ -10,3 +10,4 @@
 *.lai
 *.la
 *.a
+/Ports/Ports.pro.user

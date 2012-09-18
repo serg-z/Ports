@@ -16,11 +16,15 @@ TEMPLATE = app
 SOURCES += main.cpp\
     mainwindow.cpp \
     InpOut.cpp \
-    pinwidget.cpp
+    pinwidget.cpp \
+    portwidget.cpp \
+    portlptwidget.cpp
 
 HEADERS  += mainwindow.h \
     InpOut.h \
-    pinwidget.h
+    pinwidget.h \
+    portwidget.h \
+    portlptwidget.h
 
 FORMS    += mainwindow.ui
 
@@ -35,7 +39,13 @@ unix {
         DESTDIR = release
     }
 
+    DESTDIR = $${DESTDIR}/linux
+
     OBJECTS_DIR = $${DESTDIR}
 }
 
-win32:RC_FILE = Ports.rc
+win32 {
+    DESTDIR = $${DESTDIR}/win32
+
+    RC_FILE = Ports.rc
+}

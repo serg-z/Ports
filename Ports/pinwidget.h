@@ -6,28 +6,33 @@
 
 class PinWidget : public QWidget
 {
+    friend class PortWidget;
+
     Q_OBJECT
 public:
-    explicit PinWidget(QWidget *parent = 0);
-
-    QString m_pinName;
-    int m_pinNumber;
-    bool m_checkable;
+    explicit PinWidget(QWidget *parent, int number, const QString &header,
+                       bool interactive = false, const QString &toolTip = "");
 
 signals:
-    void toggled(bool checked, int pinNumber);
+    // emitted when user toggles pin
+    void toggled(bool state);
+    // emitted when pin state changed using setState
+    void stateChanged(bool state);
     
 public slots:
-    void setState(bool checked);
+    void setState(bool state);
     
 protected:
     virtual void paintEvent(QPaintEvent *);
     virtual void mouseReleaseEvent(QMouseEvent *);
 
+    int m_number;
+    QString m_header;
+    bool m_interactive;
+    bool m_state;
+    int m_pinLineSize;
     QFont m_pinNameFont;
     QFont m_pinNumberFont;
-    int m_pinLineSize;
-    bool m_checked;
 };
 
 #endif // PINWIDGET_H

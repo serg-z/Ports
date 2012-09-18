@@ -20,10 +20,10 @@ public:
 
 protected slots:
     void updatePins();
-    void pinToggled(bool checked, int pinNumber);
+    void pinToggled(bool state);
 
 private:
-    void setPinParameters(PinWidget* pin, bool checkable, int pinNumber, const QString &pinName, const QString &toolTip);
+    void setPinParameters(PinWidget *pin, bool checkable, int number, const QString &pinHeader, const QString &toolTip);
 
     Ui::MainWindow *ui;
     QTimer m_timer;
