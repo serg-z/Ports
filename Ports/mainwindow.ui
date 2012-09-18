@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>363</width>
+    <height>118</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Ports</string>
+  </property>
+  <property name="windowIcon">
+   <iconset resource="Ports.qrc">
+    <normaloff>:/Res/icon.ico</normaloff>:/Res/icon.ico</iconset>
+  </property>
+  <widget class="QWidget" name="centralWidget">
+   <layout class="QVBoxLayout" name="verticalLayout">
+    <property name="spacing">
+     <number>0</number>
+    </property>
+    <property name="margin">
+     <number>0</number>
+    </property>
+    <item>
+     <widget class="QTabWidget" name="tabWidget">
+      <property name="currentIndex">
+       <number>0</number>
+      </property>
+      <widget class="QWidget" name="tabLpt1">
+       <attribute name="title">
+        <string>LPT1</string>
+       </attribute>
+       <layout class="QVBoxLayout" name="verticalLayout_3">
+        <property name="spacing">
+         <number>0</number>
+        </property>
+        <property name="margin">
+         <number>0</number>
+        </property>
+        <item>
+         <layout class="QVBoxLayout" name="verticalLayout_2">
+          <property name="spacing">
+           <number>0</number>
+          </property>
+          <item>
+           <layout class="QHBoxLayout" name="horizontalLayout">
+            <property name="spacing">
+             <number>0</number>
+            </property>
+            <item>
+             <widget class="PinWidget" name="pinWidget13" native="true"/>
+            </item>
+            <item>
+             <widget class="PinWidget" name="pinWidget12" native="true"/>
+            </item>
+            <item>
+             <widget class="PinWidget" name="pinWidget11" native="true"/>
+            </item>
+            <item>
+             <widget class="PinWidget" name="pinWidget10" native="true"/>
+            </item>
+            <item>
+             <widget class="PinWidget" name="pinWidget9" native="true"/>
+            </item>
+            <item>
+             <widget class="PinWidget" name="pinWidget8" native="true"/>
+            </item>
+            <item>
+             <widget class="PinWidget" name="pinWidget7" native="true"/>
+            </item>
+            <item>
+             <widget class="PinWidget" name="pinWidget6" native="true"/>
+            </item>
+            <item>
+             <widget class="PinWidget" name="pinWidget5" native="true"/>
+            </item>
+            <item>
+             <widget class="PinWidget" name="pinWidget4" native="true"/>
+            </item>
+            <item>
+             <widget class="PinWidget" name="pinWidget3" native="true"/>
+            </item>
+            <item>
+             <widget class="PinWidget" name="pinWidget2" native="true"/>
+            </item>
+            <item>
+             <widget class="PinWidget" name="pinWidget1" native="true"/>
+            </item>
+           </layout>
+          </item>
+          <item>
+           <layout class="QHBoxLayout" name="horizontalLayout_2">
+            <property name="spacing">
+             <number>0</number>
+            </property>
+            <property name="leftMargin">
+             <number>15</number>
+            </property>
+            <property name="rightMargin">
+             <number>15</number>
+            </property>
+            <item>
+             <widget class="PinWidget" name="pinWidget25" native="true"/>
+            </item>
+            <item>
+             <widget class="PinWidget" name="pinWidget24" native="true"/>
+            </item>
+            <item>
+             <widget class="PinWidget" name="pinWidget23" native="true"/>
+            </item>
+            <item>
+             <widget class="PinWidget" name="pinWidget22" native="true"/>
+            </item>
+            <item>
+             <widget class="PinWidget" name="pinWidget21" native="true"/>
+            </item>
+            <item>
+             <widget class="PinWidget" name="pinWidget20" native="true"/>
+            </item>
+            <item>
+             <widget class="PinWidget" name="pinWidget19" native="true"/>
+            </item>
+            <item>
+             <widget class="PinWidget" name="pinWidget18" native="true"/>
+            </item>
+            <item>
+             <widget class="PinWidget" name="pinWidget17" native="true"/>
+            </item>
+            <item>
+             <widget class="PinWidget" name="pinWidget16" native="true"/>
+            </item>
+            <item>
+             <widget class="PinWidget" name="pinWidget15" native="true"/>
+            </item>
+            <item>
+             <widget class="PinWidget" name="pinWidget14" native="true"/>
+            </item>
+           </layout>
+          </item>
+         </layout>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QWidget" name="tabCom">
+       <attribute name="title">
+        <string>COM</string>
+       </attribute>
+      </widget>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+ </widget>
+ <layoutdefault spacing="6" margin="11"/>
+ <customwidgets>
+  <customwidget>
+   <class>PinWidget</class>
+   <extends>QWidget</extends>
+   <header>pinwidget.h</header>
+   <container>1</container>
+   <slots>
+    <signal>toggled(bool,int)</signal>
+    <slot>setChecked(checked)</slot>
+   </slots>
+  </customwidget>
+ </customwidgets>
+ <resources>
+  <include location="Ports.qrc"/>
+ </resources>
+ <connections/>
+</ui>
