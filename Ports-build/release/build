@@ -1,0 +1,9 @@
+#!/bin/bash
+
+SOURCE_DIR="../../Ports/tests"
+
+if [ -z "$1" ]; then
+    echo "filename expected"
+else
+    g++ -std=c++0x -Wall -pedantic -I"$SOURCE_DIR" -I"$SOURCE_DIR/.." -o "$(basename "$1" .cpp)" "$SOURCE_DIR/$1" "$SOURCE_DIR/../InpOut.cpp" -lrt
+fi
